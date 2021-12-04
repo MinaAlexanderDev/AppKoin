@@ -1,5 +1,6 @@
 package com.mina.localdatabaseapp.ui.userlist
 
+import UsersListViewModel
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,8 @@ import com.mina.localdatabaseapp.model.datamodel.UserData
 import com.mina.localdatabaseapp.model.entitymodel.User
 import com.mina.localdatabaseapp.ui.adapter.OnListItemClick
 import com.mina.localdatabaseapp.ui.adapter.UserRecyclerViewAdapter
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+
 
 class ListFragment : Fragment(), OnListItemClick {
     val TAG = "ListFragment"
@@ -21,11 +24,13 @@ class ListFragment : Fragment(), OnListItemClick {
     lateinit var binding: FragmentListBinding
     var userList: List<User> = emptyList()
     var userName: String? = null
+//    lateinit var viewModel: UsersListViewModel
+private val viewModel: UsersListViewModel by sharedViewModel()
+
 
     private val userRecyclerViewAdapter: UserRecyclerViewAdapter by lazy {
         UserRecyclerViewAdapter()
     }
-    lateinit var viewModel: UserViewModel
 
 
     override fun onCreateView(
@@ -40,7 +45,7 @@ class ListFragment : Fragment(), OnListItemClick {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
+//        viewModel = ViewModelProvider(requireActivity()).get(UsersListViewModel::class.java)
         userName = arguments?.getString("userName")
         binding.rvShowData.adapter = userRecyclerViewAdapter
         binding.edtJobTitle.setText("")
@@ -58,7 +63,7 @@ class ListFragment : Fragment(), OnListItemClick {
                 )
             )
             //add in local db
-            //            viewModel.addUser(
+            //            listViewModel.addUser(
 //                User(
 //                    0,
 //                    binding.edtName.text.toString(),
@@ -67,28 +72,28 @@ class ListFragment : Fragment(), OnListItemClick {
 //            )
 
         }
-        binding.btnEdit.setOnClickListener {
-            Log.e(TAG, " btnEdit :${UserData.id} ")
-            UserData.id?.let { it1 ->
-                User(
-                    it1,
-                    binding.edtName.text.toString(),
-                    binding.edtJobTitle.text.toString(),
-                    0
-
-
-                )
-            }?.let { it2 -> viewModel.updateUser(it2) }
-
-            binding.edtJobTitle.setText("")
-            binding.edtName.setText("")
-
-        }
-        binding.btnSearch.setOnClickListener {
-            Log.e(TAG, " btnEdit :${(binding.edtSearch.text.toString()).toInt()} ")
-            viewModel.searchUser((binding.edtSearch.text.toString()).toInt())
-
-        }
+//        binding.btnEdit.setOnClickListener {
+//            Log.e(TAG, " btnEdit :${UserData.id} ")
+//            UserData.id?.let { it1 ->
+//                User(
+//                    it1,
+//                    binding.edtName.text.toString(),
+//                    binding.edtJobTitle.text.toString(),
+//                    0
+//
+//
+//                )
+//            }?.let { it2 -> viewModel.updateUser(it2) }
+//
+//            binding.edtJobTitle.setText("")
+//            binding.edtName.setText("")
+//
+//        }
+//        binding.btnSearch.setOnClickListener {
+//            Log.e(TAG, " btnEdit :${(binding.edtSearch.text.toString()).toInt()} ")
+//            viewModel.searchUser((binding.edtSearch.text.toString()).toInt())
+//
+//        }
         binding.btnGetAll.setOnClickListener {
             Log.e(TAG, " btnGetAll ")
             getAllUsers()
@@ -142,7 +147,7 @@ class ListFragment : Fragment(), OnListItemClick {
     //get users f
     private fun getAllUsers() {
         Log.e(TAG, "getAllUsers")
-//        viewModel.getUsers()
+//        listViewModel.getUsers()
         viewModel.getUsersAPI()
         binding.progressBar.visibility = View.VISIBLE
     }
@@ -150,16 +155,16 @@ class ListFragment : Fragment(), OnListItemClick {
 //    //get users from local
 //    private fun getAllUsers() {
 //        Log.e(TAG, "getAllUsers")
-//        viewModel.getUsers()
+//        listViewModel.getUsers()
 //        binding.progressBar.visibility = View.VISIBLE
 //    }
 
 
     override fun onItemDelete(user: User) {
         //delete from API
-        viewModel.deleteUserAPI(user.id)
+//        viewModel.deleteUserAPI(user.id)
         //delete from local db
-//        viewModel.deleteUser(user)
+//        listViewModel.deleteUser(user)
         Toast.makeText(
             context,
             "The user ${user.name} is deleted successfully",
@@ -189,7 +194,7 @@ class ListFragment : Fragment(), OnListItemClick {
 
     //    }
     override fun onItemSearchUser(user: User) {
-        viewModel.searchUser(user.id)
+//        viewModel.searchUser(user.id)
     }
 
 

@@ -6,7 +6,7 @@ import com.mina.localdatabaseapp.model.localdb.roomdb.UserDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class LocalRepositoryImp(private val db: UserDatabase) : DatabaseRepository {
+class DatabaseRepositoryImp(private val db: UserDatabase) : DatabaseRepository {
     override suspend fun addUser(user: User) {
         withContext(Dispatchers.IO) {
             db.userDao().insertOrUpdateUser(user)

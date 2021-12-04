@@ -9,16 +9,17 @@ configurations.all {
     resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
 }
 android {
-    compileSdkVersion 31
+    compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.mina.localdatabaseapp"
         minSdkVersion 19
-        targetSdkVersion 31
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        // Enabling multidex support.
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
@@ -41,7 +42,7 @@ android {
 }
 
 dependencies {
-
+    def nav_version = "2.3.5"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'
@@ -51,7 +52,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    def nav_version = "2.3.5"
+
     //navigation
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -78,22 +79,43 @@ dependencies {
     kapt "androidx.room:room-compiler:2.0.0-alpha1"
 
     //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
 
     //Koin
-     def koin_version= "3.1.4"
-    // Koin main features for Android
-    implementation "io.insert-koin:koin-android:$koin_version"
-// No more koin-android-viewmodel, koin-android-scope, koin-android-fragment
+//     def  koin_version = '2.0.1'
+    def  koin_version = '2.2.3'
 
-// Java Compatibility
-    implementation "io.insert-koin:koin-android-compat:$koin_version"
-// Jetpack WorkManager
-    implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
-// Navigation Graph
-    implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
-// Jetpack Compose
-    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+//    // Koin for Android
+//    implementation "io.insert-koin:koin-android:$koin_version"
+//// Koin Android Scope features
+//    implementation "io.insert-koin:koin-android-scope:$koin_version"
+//// Koin Android ViewModel features
+//    implementation "io.insert-koin:koin-android-viewmodel:$koin_version"
+//// Koin Android Experimental features
+//    implementation "io.insert-koin:koin-android-ext:$koin_version"
 
+    // Koin AndroidX Scope features
+    implementation "io.insert-koin:koin-androidx-scope:$koin_version"
+// Koin AndroidX ViewModel features
+    implementation "io.insert-koin:koin-androidx-viewmodel:$koin_version"
+// Koin AndroidX Fragment features
+    implementation "io.insert-koin:koin-androidx-fragment:$koin_version"
+// Koin AndroidX WorkManager
+//    implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
+// Koin AndroidX Jetpack Compose
+//    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+// Koin AndroidX Experimental features
+    implementation "io.insert-koin:koin-androidx-ext:$koin_version"
+// Koin for Kotlin
+    implementation "io.insert-koin:koin-core:$koin_version"
+// Koin extended & experimental features
+    implementation "io.insert-koin:koin-core-ext:$koin_version"
+// Koin for Unit tests
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+// Koin for Java developers is now part of core
+// implementation "io.insert-koin:koin-java:$koin_version"
+    testImplementation "org.mockito:mockito-core:3.+"
+
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
 }
