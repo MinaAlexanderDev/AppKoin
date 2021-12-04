@@ -1,4 +1,4 @@
-package com.ahmedtawfik.kotlinappnavigation.model.entity
+package com.mina.localdatabaseapp.model.entitymodel
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -9,11 +9,13 @@ data class User(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
 
-    @ColumnInfo(name = "user_name")
+    @ColumnInfo(name = "name")
     var name: String,
 
-    @ColumnInfo(name = "user_message")
+    @ColumnInfo(name = "message")
     var message: String,
 
-//    var imageId: Int
-)
+    @ColumnInfo(name = "imageId")
+    var imageId:Int
+
+    )

@@ -1,10 +1,10 @@
-package com.ahmedtawfik.kotlinappnavigation.model.local.roomdb
+package com.mina.localdatabaseapp.model.localdb.roomdb
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.ahmedtawfik.kotlinappnavigation.model.entity.User
+import com.mina.localdatabaseapp.model.entitymodel.User
 
 private const val DATABASE_NAME = "product_dataBase"
 
@@ -17,7 +17,7 @@ abstract class UserDatabase : RoomDatabase() {
         private var instance: UserDatabase? = null
         fun getInstance(context: Context): UserDatabase {
             return instance ?: synchronized(Any()) {
-                instance?: buildDataBase(context).also { instance = it }
+                instance ?: buildDataBase(context).also { instance = it }
             }
         }
 

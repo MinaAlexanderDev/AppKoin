@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.ahmedtawfik.kotlinappnavigation.model.entity.User
+import com.mina.localdatabaseapp.model.entitymodel.User
 import com.mina.localdatabaseapp.R
 
-class UserRecyclerView : RecyclerView.Adapter<UserRecyclerView.UserViewHolder>() {
+class UserRecyclerViewAdapter : RecyclerView.Adapter<UserRecyclerViewAdapter.UserViewHolder>() {
 
     var onListItemClick: OnListItemClick? = null
     var userList: List<User> = emptyList()
@@ -20,45 +20,41 @@ class UserRecyclerView : RecyclerView.Adapter<UserRecyclerView.UserViewHolder>()
     }
 
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var tvDelete: ImageView = itemView.findViewById(R.id.tv_delete)
-        var tvEdit: ImageView = itemView.findViewById(R.id.tv_edit)
-        var tvUserName: TextView = itemView.findViewById(R.id.tv_item_userName)
-        var tvMessage: TextView = itemView.findViewById(R.id.tv_item_message)
-
+        private var btnDelete: ImageView = itemView.findViewById(R.id.bt_delete)
+        private var btnEdit: ImageView = itemView.findViewById(R.id.bt_edit)
+        private var tvUserName: TextView = itemView.findViewById(R.id.tv_item_userName)
+        private var tvMessage: TextView = itemView.findViewById(R.id.tv_item_title)
+        private var tvId: TextView = itemView.findViewById(R.id.tv_item_id)
         fun bind(user: User) {
-//            iv_userImage.setImageResource(user.imageId)
             tvUserName.text = user.name
             tvMessage.text = user.message
-            tvDelete.setOnClickListener{
+            tvId.text = user.id.toString()
+
+            btnDelete.setOnClickListener {
                 onListItemClick?.onItemDelete(user)
             }
-            tvEdit.setOnClickListener {
 
-
-            }
-            tvEdit.setOnClickListener {
+            btnEdit.setOnClickListener {
                 onListItemClick?.onItemEdit(user)
             }
-            itemView.setOnClickListener{
-                onListItemClick?.onItemSelect(user)
-
-            }
+//            itemView.setOnClickListener {
+//                onListItemClick?.onItemSelect(user)
+//
+//            }
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        var view: View =
+        val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return UserViewHolder(view)
     }
-
     override fun getItemCount(): Int {
         return userList.size
     }
-
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        var user: User = userList.get(position)
+        val user: User = userList.get(position)
         holder.bind(user)
     }
 

@@ -1,9 +1,19 @@
 <resources>
 
-    <string name="app_name">Kotlin Navigation App</string>
+    <string name="app_name">UserLocaldb</string>
     <string name="username">User Name:</string>
     <string name="password">Password:</string>
     <string name="login">Login</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="job_title">Job Title</string>
+    <string name="user_name">user Name</string>
+    <string name="id">Id</string>
+    <string name="enter_user_id_to_search">Enter user id to search</string>
+    <string name="enter_user_name">Enter user name</string>
+    <string name="enter_user_job_title">Enter user job title</string>
+    <string name="add_user">Add</string>
+    <string name="edit">edit</string>
+    <string name="search">search</string>
+    <string name="all">All</string>
 </resources>

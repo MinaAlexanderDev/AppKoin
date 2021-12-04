@@ -1,7 +1,8 @@
-package com.ahmedtawfik.kotlinappnavigation.model.local.roomdb
+package com.mina.localdatabaseapp.model.localdb.roomdb
 
-import com.ahmedtawfik.kotlinappnavigation.model.entity.User
+import com.mina.localdatabaseapp.model.entitymodel.User
 import com.mina.localdatabaseapp.model.localdb.roomdb.DatabaseRepository
+import com.mina.localdatabaseapp.model.localdb.roomdb.UserDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -28,6 +29,11 @@ class LocalRepositoryImp(private val db: UserDatabase) : DatabaseRepository {
         }
 
 
-     }
+    }
+    override suspend fun searchUser(userId: Int) = withContext(Dispatchers.IO) {
+        db.userDao().searchUser(userId)
+    }
+
+
 
 }

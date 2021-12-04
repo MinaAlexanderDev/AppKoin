@@ -4,8 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.UserLlist.ListFragment">
+    tools:context=".ui.userlist.ListFragment">
 
+    <EditText
+        android:id="@+id/edt_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:hint="@string/enter_user_id_to_search"
+        android:inputType="textPersonName"
+        />
     <EditText
         android:id="@+id/edt_name"
         android:layout_width="match_parent"
@@ -13,53 +23,77 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:hint="Enter product name"
+        android:hint="@string/enter_user_name"
         android:inputType="textPersonName"
-
+        android:layout_below="@id/edt_search"
         />
 
     <EditText
-        android:id="@+id/edt_message"
+        android:id="@+id/edt_job_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edt_name"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-
-        android:hint="Enter product description"
+        android:hint="@string/enter_user_job_title"
         android:inputType="textPersonName" />
 
     <LinearLayout
         android:id="@+id/layout_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edt_message"
+        android:layout_below="@id/edt_job_title"
         android:orientation="horizontal">
+
 
         <Button
             android:id="@+id/btn_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="3dp"
             android:layout_weight="1"
-            android:text="Add" />
+            android:text="@string/add_user" />
 
         <Button
             android:id="@+id/btn_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="3dp"
             android:layout_weight="1"
-            android:text="edit" />
+            android:text="@string/edit" />
+
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layout_btn2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_btn"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_get_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="@string/all" />
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="@string/search"
+            />
+
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_showData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layout_btn"
+        android:layout_below="@id/layout_btn2"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:orientation="vertical"
